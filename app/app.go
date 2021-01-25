@@ -34,7 +34,7 @@ func (app *App) GetTodoHandler(w http.ResponseWriter, req *http.Request) {
 	_ = json.NewEncoder(w).Encode(todo)
 }
 
-func (app *App) getTodo(id string) (*Todo) {
+func (app *App) getTodo(id string) *Todo {
 	result, err := app.Database.Query("SELECT id, message, done FROM todos")
 	if err != nil {
 		panic(err.Error())
@@ -93,6 +93,6 @@ func (app *App) MarkTodoDoneHandler(w http.ResponseWriter, req *http.Request) {
 	params := mux.Vars(req)
 	id := params["id"]
 	_, _ = app.Database.Exec("UPDATE todos SET done = true WHERE id = ?", id)
-	todo :=	app.getTodo(id)
+	todo := app.getTodo(id)
 	_ = json.NewEncoder(w).Encode(todo)
 }

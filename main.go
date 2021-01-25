@@ -10,14 +10,14 @@ import (
 )
 
 func main() {
-	db, _ := db.CreateDatabase()
-	defer db.Close()
+	database, _ := db.CreateDatabase()
+	defer database.Close()
 
-	app := &app.App{
+	application := &app.App{
 		Router:   mux.NewRouter(),
-		Database: db,
+		Database: database,
 	}
-	app.SetupRouter()
+	application.SetupRouter()
 
-	log.Fatal(http.ListenAndServe(":8081", app.Router))
+	log.Fatal(http.ListenAndServe(":8081", application.Router))
 }
