@@ -16,9 +16,9 @@ type App struct {
 
 func (app *App) SetupRouter() {
 	app.Router.HandleFunc("/todos", app.GetTodosHandler).Methods("GET")
-	app.Router.HandleFunc("/todo/{id}", app.GetTodoHandler).Methods("GET")
-	app.Router.HandleFunc("/todo", app.CreateTodoHandler).Methods("POST")
-	app.Router.HandleFunc("/todo/{id}", app.MarkTodoDoneHandler).Methods("PUT")
+	app.Router.HandleFunc("/todos/{id}", app.GetTodoHandler).Methods("GET")
+	app.Router.HandleFunc("/todos", app.CreateTodoHandler).Methods("POST")
+	app.Router.HandleFunc("/todos/{id}", app.MarkTodoDoneHandler).Methods("PUT")
 }
 
 type Todo struct {
